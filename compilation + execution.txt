@@ -1,0 +1,54 @@
+compilation
+
+ASP
+javac -cp "C:/Users/Lenovo/ASP_vs_MCTS_Comparison/lib/pddl4j-4.0.0.jar;C:/Users/Lenovo/ASP_vs_MCTS_Comparison/lib/log4j-api-2.13.3.jar;C:/Users/Lenovo/ASP_vs_MCTS_Comparison/lib/log4j-core-2.13.3.jar" -d "C:/Users/Lenovo/ASP_vs_MCTS_Comparison/bin" src/fr/uga/pddl4j/examples/asp/ASP.java src/fr/uga/pddl4j/examples/asp/Node.java
+
+execution
+
+ASP
+java -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 --illegal-access=deny -Djdk.attach.allowAttachSelf=false -Djol.tryWithSudo=false -cp "C:/Users/Lenovo/ASP_vs_MCTS_Comparison/bin;C:/Users/Lenovo/ASP_vs_MCTS_Comparison/lib/pddl4j-4.0.0.jar;C:/Users/Lenovo/ASP_vs_MCTS_Comparison/lib/log4j-api-2.13.3.jar;C:/Users/Lenovo/ASP_vs_MCTS_Comparison/lib/log4j-core-2.13.3.jar" fr.uga.pddl4j.examples.asp.ASP "C:/Users/Lenovo/ASP_vs_MCTS_Comparison/resources/gripper/domain.pddl" "C:/Users/Lenovo/ASP_vs_MCTS_Comparison/resources/gripper/p05.pddl"
+
+compilation
+
+MCTS
+javac -cp "C:/Users/Lenovo/ASP_vs_MCTS_Comparison/lib/pddl4j-4.0.0.jar;C:/Users/Lenovo/ASP_vs_MCTS_Comparison/lib/log4j-api-2.13.3.jar;C:/Users/Lenovo/ASP_vs_MCTS_Comparison/lib/log4j-core-2.13.3.jar" -d "C:/Users/Lenovo/ASP_vs_MCTS_Comparison/bin" src/fr/uga/pddl4j/examples/mcts/MCTSPlanner.java
+
+execution
+
+MCTS
+
+java -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 --illegal-access=deny -Djdk.attach.allowAttachSelf=false -Djol.tryWithSudo=false -cp "C:/Users/Lenovo/ASP_vs_MCTS_Comparison/bin;C:/Users/Lenovo/ASP_vs_MCTS_Comparison/lib/pddl4j-4.0.0.jar;C:/Users/Lenovo/ASP_vs_MCTS_Comparison/lib/log4j-api-2.13.3.jar;C:/Users/Lenovo/ASP_vs_MCTS_Comparison/lib/log4j-core-2.13.3.jar" fr.uga.pddl4j.examples.mcts.MCTSPlanner "C:/Users/Lenovo/ASP_vs_MCTS_Comparison/resources/blocksworld/domain.pddl" "C:/Users/Lenovo/ASP_vs_MCTS_Comparison/resources/blocksworld/p01.pddl"
+
+
+Supprimer les fichiers compilés existants
+
+del /S /Q C:\Users\Lenovo\ASP_vs_MCTS_Comparison\bin\*
+
+
+
+1. Exécuter run_benchmark.sh :
+
+bash run_benchmark.sh
+
+Ce que fait run_benchmark.sh :
+Compile les fichiers Java.
+Exécute les planificateurs ASP et MCTS sur les problèmes définis dans les benchmarks.
+Génère des fichiers de résultats dans le répertoire results.
+
+
+2. Exécuter le Script Python :
+
+python analyze_results.py
+
+Ce que fait le script Python (generate_graphs.py) :
+Lit les fichiers *_makespan.txt générés par run_benchmark.sh.
+Crée des graphes comparant les makespans des deux planificateurs pour chaque benchmark.
+Sauvegarde les graphes en tant que fichiers PNG dans le répertoire results.
+
+
+Utilisation du VAL :
+
+Lenovo@LAPTOP-Q27V2V1D MINGW64 /c/Users/Lenovo/VAL/build
+$ ./bin/Validate.exe "C:\Users\Lenovo\ASP_vs_MCTS_Comparison\resources\blocksworld\domain.pddl" "C:\Users\Lenovo\ASP_vs_MCTS_Comparison\resources\blocksworld\p01.pddl" "C:\Users\Lenovo\ASP_vs_MCTS_Comparison\results\blocksworld_p05_ASP_output.txt"
+
+
